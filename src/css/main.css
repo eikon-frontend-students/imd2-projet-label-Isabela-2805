@@ -87,7 +87,7 @@ a {
 .hero-buttons a {
   display: inline-block;
   padding: 14px 40px;
-  border: 2px solid white;
+  border: 1px solid white;
   color: white;
   text-decoration: none;
   font-size: 16px;
@@ -95,6 +95,7 @@ a {
   transition: background 0.3s, color 0.3s;
 }
 .hero-buttons a:hover {
+  border: 1px solid rgb(255, 0, 0);
   background: rgb(255, 0, 0);
   color: black;
 }
@@ -103,7 +104,7 @@ a {
   font-family: "Anton", sans-serif;
   font-size: 120px;
   text-transform: uppercase;
-  padding: 5px 0 5dvb 50px;
+  padding: 5px 0 0dvb 50px;
   background: white;
   color: black;
 }
@@ -112,12 +113,13 @@ a {
   flex-direction: column;
   width: 100%;
 }
+
 .artist-card {
   display: grid;
   grid-template-columns: 1fr 1fr;
   width: 100%;
   min-height: 450px;
-  background: black;
+  background: rgb(0, 0, 0);
 }
 .artist-card.reverse {
   grid-template-columns: 1fr 1fr;
@@ -160,17 +162,46 @@ artist-content {
   margin-bottom: 30px;
 }
 
-.btn {
-  border: 2px solid white;
-  padding: 12px 35px;
-  color: white;
-  text-decoration: none;
-  border-radius: 40px;
-  font-size: 16px;
-  transition: 0.3s;
+.btn:hover {
+  border: 1px solid rgb(255, 0, 0);
+  background: rgb(255, 0, 0);
+  color: black;
 }
 
-.btn:hover {
-  background: white;
-  color: black;
+.album-grid {
+  display: flex;
+  justify-content: center;
+  gap: 30px;
+  padding: 50px 0;
+}
+
+.card {
+  width: 450px;
+  background: #000;
+  border: 1px solid white;
+  padding-bottom: 5px;
+  transition: 0.3s ease;
+  position: relative;
+}
+.card:hover {
+  border: 1px solid red;
+}
+
+.card img {
+  width: 100%;
+  height: 350px;
+  object-fit: cover;
+  display: block;
+}
+
+.card h3 {
+  color: white;
+  font-size: 28px;
+  margin: 10px 15px;
+}
+
+.card p {
+  color: #ffffff;
+  font-size: 16px;
+  margin: 5px 15px;
 }
