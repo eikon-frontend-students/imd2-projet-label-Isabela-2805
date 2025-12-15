@@ -12,7 +12,7 @@ body {
 }
 
 h1 {
-  color: var(--blanc-100, #ffffff);
+  color: #ffffff;
   font-family: Anton;
   font-size: 170px;
   font-style: normal;
@@ -29,7 +29,6 @@ h1 {
   align-items: center;
   position: absolute;
   z-index: 20;
-  top: 0;
 }
 .header .liens {
   display: flex;
@@ -58,12 +57,10 @@ a {
   width: 100%;
   height: 100vh;
   object-fit: cover;
-  filter: brightness(55%);
 }
 .hero-section {
   position: absolute;
   top: 50%;
-  left: 0;
   transform: translateY(-50%);
   width: 100%;
   padding: 0 60px;
@@ -139,7 +136,7 @@ a {
   height: 100%;
   object-fit: cover;
 }
-artist-content {
+.artist-content {
   padding: 60px;
   color: white;
   display: flex;
@@ -211,6 +208,72 @@ artist-content {
   margin: 5px 15px;
 }
 
+/* ----- CONTAINER DES ÉVÈNEMENTS ----- */
+.event {
+  display: grid;
+  grid-template-columns: 140px 1fr 1fr 1fr 40px;
+  align-items: center;
+  padding: 18px 20px;
+  border-bottom: 1px solid #222;
+  background: #000;
+  color: white;
+  font-family: "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: 0.5px;
+  transition: all 0.25s ease;
+}
+
+/* ----- STYLE DU TEXTE ----- */
+.event h3 {
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.event p {
+  text-transform: uppercase;
+  font-size: 13px;
+  color: #cccccc;
+}
+
+/* la ville */
+.event .city {
+  text-transform: uppercase;
+}
+
+/* le pays en blanc */
+.event .country {
+  color: white;
+}
+
+/* ----- FLECHE ----- */
+.event .arrow {
+  width: 18px;
+  height: 18px;
+  filter: invert(100%); /* flèche blanche */
+  transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+/* ----- HOVER (deuxième image) ----- */
+.event:hover {
+  background: #0b0b0b;
+}
+
+.event:hover p.artist,
+.event:hover p.city,
+.event:hover p.country {
+  color: #ff3b30; /* rouge comme sur ta photo */
+}
+
+.event:hover .arrow {
+  transform: translateX(5px);
+  filter: invert(38%) sepia(93%) saturate(7490%) hue-rotate(-2deg)
+    brightness(98%) contrast(110%);
+  /* flèche rouge */
+}
+
+/* ----- LIGNES SÉPARATRICES PLUS FINES ----- */
+.event:not(:last-child) {
+  border-bottom: 1px solid #1a1a1a;
+}
 .grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -279,69 +342,331 @@ artist-content {
   opacity: 1;
 }
 
-/* ----- CONTAINER DES ÉVÈNEMENTS ----- */
-.event {
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* GRILLE */
+.grid_artistes {
   display: grid;
-  grid-template-columns: 140px 1fr 1fr 1fr 40px;
-  align-items: center;
-  padding: 18px 20px;
-  border-bottom: 1px solid #222;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 1px;
+  background: #111;
+  width: 100%;
+}
+
+/* CASE ARTISTE */
+.grid_artistes > div {
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
   background: #000;
-  color: white;
-  font-family: "Helvetica Neue", Arial, sans-serif;
-  letter-spacing: 0.5px;
-  transition: all 0.25s ease;
 }
 
-/* ----- STYLE DU TEXTE ----- */
-.event h3 {
-  font-size: 22px;
-  font-weight: 600;
+/* DISIZ EN GRAND */
+.artiste_Disiz {
+  grid-column: span 2;
 }
 
-.event p {
-  text-transform: uppercase;
+/* IMAGE */
+.grid_artistes img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: grayscale(100%) contrast(115%);
+  transition: transform 0.6s ease;
+}
+
+/* ZOOM IMAGE AU SURVOL */
+.grid_artistes > div:hover img {
+  transform: scale(1.05);
+}
+
+/* BANDE ROUGE (INVISIBLE PAR DÉFAUT) */
+.grid_artistes > div::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to top,
+    rgba(200, 0, 0, 0.9) 0%,
+    rgba(200, 0, 0, 0.7) 25%,
+    rgba(0, 0, 0, 0) 50%
+  );
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+/* AFFICHAGE ROUGE AU SURVOL */
+.grid_artistes > div:hover::after {
+  opacity: 1;
+}
+
+/* NOM ARTISTE (CACHÉ PAR DÉFAUT) */
+.grid_artistes h1 {
+  position: absolute;
+  top: 50%;
+  left: 38%;
+  z-index: 2;
+  color: #000;
+  font-family: Anton, sans-serif;
+  font-size: 5.2rem;
+  opacity: 0;
+}
+
+.grid_artistes > div:hover h1 {
+  opacity: 1;
+  transform: translate(-50%, -50%);
+}
+
+/* NOM VISIBLE AU SURVOL */
+.grid_artistes > div:hover h1 {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* responsive */
+@media (max-width: 768px) {
+  .hero-section h1 {
+    font-size: 100px;
+  }
+}
+
+/* --- VARIABLES CSS (Ajouter au début de votre fichier si possible) --- */
+:root {
+  --color-primary-red: rgb(255, 0, 0);
+  --color-dark-gray: #333;
+}
+
+/* --- MUTUALISATION POUR LES BOUTONS --- */
+/* Crée une classe de base pour tous les boutons ou éléments cliquables */
+.base-button {
+  display: inline-flex; /* Utilisez flex pour centrer le contenu (la flèche) */
+  justify-content: center;
+  align-items: center;
+  padding: 0; /* Retiré les paddings qui ne sont pas utiles ici */
+  height: 50px; /* Définir une hauteur fixe */
+  min-width: 60px; /* Définir une largeur minimale */
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  font-size: 1.5em; /* Taille de la flèche */
+  transition: background 0.3s, color 0.3s, border 0.3s;
+  /* On reprend la logique de transition de .hero-buttons a */
+}
+
+/* --- Styles spécifiques à la Newsletter --- */
+
+.newsletter-section {
+  width: 100%;
+  /* Rendre le fond noir absolu pour la démo si besoin, sinon centrez simplement */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 80px 20px; /* Padding pour simuler l'espacement autour de la boîte */
+}
+
+/* Le Cadre de la Newsletter */
+.newsletter-box {
+  border: 1px solid var(--color-dark-gray); /* Reprendre le gris de votre CSS s'il existe, sinon #333 */
+  max-width: 1092px;
+  padding: 70px 60px;
+  text-align: center;
+}
+
+/* Titre (réutilise les propriétés de base du H2 ou d'une taille de police existante) */
+.newsletter-title {
+  font-size: 2em; /* Taille par défaut, vous pouvez ajuster */
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Style de Gauche (Titre en blanc) */
+.newsletter-title.title-left {
+  color: #fff;
+}
+
+/* Style de Droite (Titre en rouge) - Si vous voulez le rouge de la droite */
+.newsletter-title.title-right {
+  color: var(--color-primary-red);
+}
+
+/* Description (réutilise le style de base du P) */
+.newsletter-description {
+  font-size: 0.95em;
+  line-height: 1.5;
+  color: #ccc; /* Un gris plus clair que le fond pour la lisibilité */
+  margin-bottom: 40px;
+  padding: 0 40px;
+}
+
+/* Formulaire d'Inscription */
+.signup-form {
+  display: flex;
+  max-width: 400px;
+  margin: 0 auto;
+  height: 50px;
+}
+
+/* Champ de Saisie (Input) */
+.email-input {
+  flex-grow: 1;
+  background-color: var(--color-dark-gray); /* Fond gris foncé de l'input */
+  border: none;
+  padding: 0 15px;
+  color: #fff;
+  font-size: 1em;
+  outline: none;
+}
+
+.email-input::placeholder {
+  color: #aaa;
+}
+
+/* Bouton de Soumission (Utilise la classe mutualisée .base-button) */
+.submit-button {
+  /* Aucune propriété spécifique ici, tout est dans .base-button */
+}
+
+/* Variante de Bouton Blanc (Style de Gauche) */
+.white-button-variant {
+  background-color: #fff;
+  color: #000;
+}
+
+.white-button-variant:hover {
+  background-color: #eee;
+}
+
+/* Variante de Bouton Rouge (Style de Droite) */
+.red-button-variant {
+  background-color: var(--color-primary-red);
+  color: #fff;
+}
+
+.red-button-variant:hover {
+  background-color: #c90812;
+}
+
+/* --- Responsive (pour les petits écrans) --- */
+@media (max-width: 768px) {
+  .newsletter-box {
+    padding: 40px 20px;
+  }
+
+  .newsletter-title {
+    font-size: 1.5em;
+  }
+
+  .newsletter-description {
+    padding: 0;
+  }
+
+  .signup-form {
+    max-width: 100%;
+    height: 45px;
+  }
+}
+
+/* ------------------ Disiz ------------------ */
+
+/* IMAGE À GAUCHE */
+.header-image {
+  width: 50%;
+}
+
+/* TEXTE À DROITE */
+.Header-disiz {
+  width: 50%;
+  padding: 80px 70px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* TITRE */
+.Header-disiz h1 {
+  font-size: 200px;
+  font-weight: 800;
+  margin-bottom: -10px;
+}
+
+/* PARAGRAPHE */
+.Header-disiz p {
+  font-size: 16px;
+  line-height: 1.5;
+  color: #ffffff;
+  margin-bottom: 31px;
+}
+
+/* BOUTON */
+.btn {
+  width: fit-content;
+  padding: 14px 36px;
+  border: 1px solid #fff;
+  border-radius: 40px;
+  text-decoration: none;
+  color: #fff;
+  font-size: 14px;
+  letter-spacing: 1px;
+  transition: all 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #ff0000;
+  color: #000000;
+}
+.footer {
+  background: #000;
+  color: #fff;
+  padding: 500px 200px 40px;
+  transition: color 0.3s ease;
+}
+
+.footer-content {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.footer-col h3 {
+  font-size: 16px;
+  margin-bottom: 15px;
+  font-weight: bold;
+}
+
+.footer-col p {
   font-size: 13px;
-  color: #cccccc;
+  margin: 4px 0;
+  opacity: 0.8;
+  transition: color 0.3s ease, opacity 0.3s ease;
 }
 
-/* la ville */
-.event .city {
-  text-transform: uppercase;
+/* texte du bas */
+.footer-bottom {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 11px;
+  opacity: 0.6;
+  transition: color 0.3s ease, opacity 0.3s ease;
 }
 
-/* le pays en blanc */
-.event .country {
-  color: white;
+/* ===== HOVER (2e image) ===== */
+.footer:hover {
+  color: #ff2a1a;
 }
 
-/* ----- FLECHE ----- */
-.event .arrow {
-  width: 18px;
-  height: 18px;
-  filter: invert(100%); /* flèche blanche */
-  transition: transform 0.25s ease, filter 0.25s ease;
+.footer:hover h3,
+.footer:hover p,
+.footer:hover .footer-bottom {
+  color: #ff2a1a;
+  opacity: 1;
 }
-
-/* ----- HOVER (deuxième image) ----- */
-.event:hover {
-  background: #0b0b0b;
-}
-
-.event:hover p.artist,
-.event:hover p.city,
-.event:hover p.country {
-  color: #ff3b30; /* rouge comme sur ta photo */
-}
-
-.event:hover .arrow {
-  transform: translateX(5px);
-  filter: invert(38%) sepia(93%) saturate(7490%) hue-rotate(-2deg)
-    brightness(98%) contrast(110%);
-  /* flèche rouge */
-}
-
-/* ----- LIGNES SÉPARATRICES PLUS FINES ----- */
-.event:not(:last-child) {
-  border-bottom: 1px solid #1a1a1a;
+.grider {
+  display: flex;
+  flex-direction: row;
 }
