@@ -6,6 +6,7 @@
 
 body {
   font-family: "Inter", sans-serif;
+  font-size: 16px;
   background: #000;
   color: white;
   overflow-x: hidden;
@@ -69,7 +70,7 @@ a {
 
 .hero-section h1 {
   font-family: "Anton", sans-serif;
-  font-size: 180px;
+  font-size: 170px;
   text-transform: uppercase;
   line-height: 0.9;
   margin-bottom: 20px;
@@ -87,7 +88,6 @@ a {
   border: 1px solid white;
   color: white;
   text-decoration: none;
-  font-size: 16px;
   border-radius: 40px;
   transition: background 0.3s, color 0.3s;
 }
@@ -204,11 +204,9 @@ a {
 
 .album p {
   color: #ffffff;
-  font-size: 16px;
   margin: 5px 15px;
 }
 
-/* ----- CONTAINER DES ÉVÈNEMENTS ----- */
 .event {
   display: grid;
   grid-template-columns: 140px 1fr 1fr 1fr 40px;
@@ -222,7 +220,6 @@ a {
   transition: all 0.25s ease;
 }
 
-/* ----- STYLE DU TEXTE ----- */
 .event h3 {
   font-size: 22px;
   font-weight: 600;
@@ -234,25 +231,21 @@ a {
   color: #cccccc;
 }
 
-/* la ville */
 .event .city {
   text-transform: uppercase;
 }
 
-/* le pays en blanc */
 .event .country {
   color: white;
 }
 
-/* ----- FLECHE ----- */
 .event .arrow {
   width: 18px;
   height: 18px;
-  filter: invert(100%); /* flèche blanche */
+  filter: invert(100%);
   transition: transform 0.25s ease, filter 0.25s ease;
 }
 
-/* ----- HOVER (deuxième image) ----- */
 .event:hover {
   background: #0b0b0b;
 }
@@ -260,17 +253,15 @@ a {
 .event:hover p.artist,
 .event:hover p.city,
 .event:hover p.country {
-  color: #ff3b30; /* rouge comme sur ta photo */
+  color: #ff3b30;
 }
 
 .event:hover .arrow {
   transform: translateX(5px);
   filter: invert(38%) sepia(93%) saturate(7490%) hue-rotate(-2deg)
     brightness(98%) contrast(110%);
-  /* flèche rouge */
 }
 
-/* ----- LIGNES SÉPARATRICES PLUS FINES ----- */
 .event:not(:last-child) {
   border-bottom: 1px solid #1a1a1a;
 }
@@ -295,7 +286,6 @@ a {
   transition: 0.3s ease;
 }
 
-/* overlay sombre */
 .card::before {
   content: "";
   position: absolute;
@@ -304,7 +294,6 @@ a {
   transition: 0.3s ease;
 }
 
-/* textes */
 .card h1,
 .card p {
   position: absolute;
@@ -328,7 +317,6 @@ a {
   font-size: 1.1rem;
 }
 
-/* hover */
 .card:hover::before {
   background: rgba(0, 0, 0, 0.55);
 }
@@ -342,14 +330,12 @@ a {
   opacity: 1;
 }
 
-/* RESET */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
-/* GRILLE */
 .grid_artistes {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
@@ -358,7 +344,6 @@ a {
   width: 100%;
 }
 
-/* CASE ARTISTE */
 .grid_artistes > div {
   position: relative;
   overflow: hidden;
@@ -366,12 +351,10 @@ a {
   background: #000;
 }
 
-/* DISIZ EN GRAND */
 .artiste_Disiz {
   grid-column: span 2;
 }
 
-/* IMAGE */
 .grid_artistes img {
   width: 100%;
   height: 100%;
@@ -380,12 +363,10 @@ a {
   transition: transform 0.6s ease;
 }
 
-/* ZOOM IMAGE AU SURVOL */
 .grid_artistes > div:hover img {
   transform: scale(1.05);
 }
 
-/* BANDE ROUGE (INVISIBLE PAR DÉFAUT) */
 .grid_artistes > div::after {
   content: "";
   position: absolute;
@@ -400,12 +381,10 @@ a {
   transition: opacity 0.4s ease;
 }
 
-/* AFFICHAGE ROUGE AU SURVOL */
 .grid_artistes > div:hover::after {
   opacity: 1;
 }
 
-/* NOM ARTISTE (CACHÉ PAR DÉFAUT) */
 .grid_artistes h1 {
   position: absolute;
   top: 50%;
@@ -422,88 +401,74 @@ a {
   transform: translate(-50%, -50%);
 }
 
-/* NOM VISIBLE AU SURVOL */
 .grid_artistes > div:hover h1 {
   opacity: 1;
   transform: translateY(0);
 }
 
-/* responsive */
 @media (max-width: 768px) {
   .hero-section h1 {
     font-size: 100px;
   }
 }
 
-/* --- VARIABLES CSS (Ajouter au début de votre fichier si possible) --- */
 :root {
   --color-primary-red: rgb(255, 0, 0);
   --color-dark-gray: #333;
 }
 
-/* --- MUTUALISATION POUR LES BOUTONS --- */
-/* Crée une classe de base pour tous les boutons ou éléments cliquables */
 .base-button {
-  display: inline-flex; /* Utilisez flex pour centrer le contenu (la flèche) */
+  display: inline-flex;
   justify-content: center;
   align-items: center;
-  padding: 0; /* Retiré les paddings qui ne sont pas utiles ici */
-  height: 50px; /* Définir une hauteur fixe */
-  min-width: 60px; /* Définir une largeur minimale */
+  padding: 0;
+  height: 50px;
+  min-width: 60px;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  font-size: 1.5em; /* Taille de la flèche */
+  font-size: 1.5em;
   transition: background 0.3s, color 0.3s, border 0.3s;
-  /* On reprend la logique de transition de .hero-buttons a */
 }
-
-/* --- Styles spécifiques à la Newsletter --- */
 
 .newsletter-section {
   width: 100%;
-  /* Rendre le fond noir absolu pour la démo si besoin, sinon centrez simplement */
+
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 80px 20px; /* Padding pour simuler l'espacement autour de la boîte */
+  padding: 80px 20px;
 }
 
-/* Le Cadre de la Newsletter */
 .newsletter-box {
-  border: 1px solid var(--color-dark-gray); /* Reprendre le gris de votre CSS s'il existe, sinon #333 */
+  border: 1px solid var(--color-dark-gray);
   max-width: 1092px;
   padding: 70px 60px;
   text-align: center;
 }
 
-/* Titre (réutilise les propriétés de base du H2 ou d'une taille de police existante) */
 .newsletter-title {
-  font-size: 2em; /* Taille par défaut, vous pouvez ajuster */
+  font-size: 2em;
   font-weight: bold;
   margin-bottom: 20px;
 }
 
-/* Style de Gauche (Titre en blanc) */
 .newsletter-title.title-left {
   color: #fff;
 }
 
-/* Style de Droite (Titre en rouge) - Si vous voulez le rouge de la droite */
 .newsletter-title.title-right {
   color: var(--color-primary-red);
 }
 
-/* Description (réutilise le style de base du P) */
 .newsletter-description {
   font-size: 0.95em;
   line-height: 1.5;
-  color: #ccc; /* Un gris plus clair que le fond pour la lisibilité */
+  color: #ccc;
   margin-bottom: 40px;
   padding: 0 40px;
 }
 
-/* Formulaire d'Inscription */
 .signup-form {
   display: flex;
   max-width: 400px;
@@ -511,10 +476,9 @@ a {
   height: 50px;
 }
 
-/* Champ de Saisie (Input) */
 .email-input {
   flex-grow: 1;
-  background-color: var(--color-dark-gray); /* Fond gris foncé de l'input */
+  background-color: var(--color-dark-gray);
   border: none;
   padding: 0 15px;
   color: #fff;
@@ -526,12 +490,6 @@ a {
   color: #aaa;
 }
 
-/* Bouton de Soumission (Utilise la classe mutualisée .base-button) */
-.submit-button {
-  /* Aucune propriété spécifique ici, tout est dans .base-button */
-}
-
-/* Variante de Bouton Blanc (Style de Gauche) */
 .white-button-variant {
   background-color: #fff;
   color: #000;
@@ -541,7 +499,6 @@ a {
   background-color: #eee;
 }
 
-/* Variante de Bouton Rouge (Style de Droite) */
 .red-button-variant {
   background-color: var(--color-primary-red);
   color: #fff;
@@ -551,7 +508,6 @@ a {
   background-color: #c90812;
 }
 
-/* --- Responsive (pour les petits écrans) --- */
 @media (max-width: 768px) {
   .newsletter-box {
     padding: 40px 20px;
@@ -571,14 +527,10 @@ a {
   }
 }
 
-/* ------------------ Disiz ------------------ */
-
-/* IMAGE À GAUCHE */
 .header-image {
   width: 50%;
 }
 
-/* TEXTE À DROITE */
 .Header-disiz {
   width: 50%;
   padding: 80px 70px;
@@ -587,22 +539,17 @@ a {
   justify-content: center;
 }
 
-/* TITRE */
 .Header-disiz h1 {
-  font-size: 200px;
   font-weight: 800;
   margin-bottom: -10px;
 }
 
-/* PARAGRAPHE */
 .Header-disiz p {
-  font-size: 16px;
   line-height: 1.5;
   color: #ffffff;
   margin-bottom: 31px;
 }
 
-/* BOUTON */
 .btn {
   width: fit-content;
   padding: 14px 36px;
@@ -634,7 +581,6 @@ a {
 }
 
 .footer-col h3 {
-  font-size: 16px;
   margin-bottom: 15px;
   font-weight: bold;
 }
@@ -646,7 +592,6 @@ a {
   transition: color 0.3s ease, opacity 0.3s ease;
 }
 
-/* texte du bas */
 .footer-bottom {
   text-align: center;
   margin-top: 60px;
@@ -655,7 +600,6 @@ a {
   transition: color 0.3s ease, opacity 0.3s ease;
 }
 
-/* ===== HOVER (2e image) ===== */
 .footer:hover {
   color: #ff2a1a;
 }
